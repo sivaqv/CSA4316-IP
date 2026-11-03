@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><title>RentRide</title></head>
+<body>
+<h1>RentRide Vehicle Rental</h1>
+<input id="name" placeholder="Customer Name">
+<input id="phone" placeholder="Customer Number">
+<input id="address" placeholder="Address">
+<select id="vehicle"><option>Car</option><option>Bike</option><option>Truck</option><option>SUV</option></select>
+<input id="date" type="date">
+<input id="days" type="number" placeholder="Rental Days">
+<select id="action"><option>Search Vehicle</option><option>Make Booking</option><option>View Booking Status</option></select>
+<button onclick="save()">Submit</button>
+<h2>Vehicle Booking Details</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.rentride||"[]");
+function save(){
+if(action.value==="Make Booking"){
+a.push([name.value,phone.value,address.value,vehicle.value,date.value,days.value,"Pending"]);
+localStorage.rentride=JSON.stringify(a);
+out.innerHTML="Booking Submitted Successfully";
+}
+else if(action.value==="Search Vehicle"){
+out.innerHTML="Available Vehicle: "+vehicle.value;
+}else{
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+}
+</script>
+</body>
+</html>
