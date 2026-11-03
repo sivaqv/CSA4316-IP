@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Home Finder</title></head>
+<body>
+<h1>Home Finder Real Estate</h1>
+<input id="name" placeholder="Property Name">
+<input id="location" placeholder="Location">
+<select id="type"><option>House</option><option>Apartment</option><option>Commercial</option><option>Land</option></select>
+<input id="price" type="number" placeholder="Price">
+<input id="rooms" type="number" placeholder="Bedrooms">
+<input id="contact" placeholder="Contact Number">
+<select id="action"><option>Search Property</option><option>Add Property</option><option>Save Property</option><option>Contact Agent</option></select>
+<button onclick="save()">Submit</button>
+<h2>Property Details</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.home||"[]");
+function save(){
+if(action.value==="Search Property"){
+let r=a.filter(x=>x[1].toLowerCase().includes(location.value.toLowerCase()));
+out.innerHTML=r.map(x=>x.join(" | ")).join("<br>")||"No property found";
+}else{
+a.push([name.value,location.value,type.value,price.value,rooms.value,contact.value,action.value]);
+localStorage.home=JSON.stringify(a);
+out.innerHTML="Successfully submitted<br>"+a.map(x=>x.join(" | ")).join("<br>");
+}
+}
+</script>
+</body>
+</html>
