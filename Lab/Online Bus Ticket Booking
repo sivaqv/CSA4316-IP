@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>Bus Ticket Booking</title></head>
+<body>
+<h1>Online Bus Ticket Booking</h1>
+<input id="user" placeholder="Passenger Name">
+<input id="from" placeholder="From">
+<input id="to" placeholder="To">
+<input id="date" type="date">
+<select id="bus"><option>Volvo</option><option>Sleeper Coach</option><option>Normal Coach</option></select>
+<input id="seat" type="number" placeholder="Number of Seats">
+<select id="action"><option>Book Ticket</option><option>Cancel Ticket</option><option>Post Comment</option></select>
+<input id="comment" placeholder="Comment">
+<button onclick="save()">Submit</button>
+<h2>Bus Records</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.bus||"[]");
+function save(){
+if(action.value==="Book Ticket")a.push([user.value,from.value,to.value,date.value,bus.value,seat.value]);
+if(action.value==="Cancel Ticket")a=a.filter(x=>x[0]!==user.value);
+if(action.value==="Post Comment")a.push(["Comment",user.value,comment.value]);
+localStorage.bus=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
