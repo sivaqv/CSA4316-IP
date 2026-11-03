@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Beauty Parlour</title></head>
+<body>
+<h1>Beauty Parlour Appointment</h1>
+<input id="name" placeholder="Customer Name">
+<input id="phone" placeholder="Phone Number">
+<select id="service"><option>Hair Cut</option><option>Facial</option><option>Makeup</option><option>Manicure</option></select>
+<input id="stylist" placeholder="Stylist Name">
+<input id="date" type="date">
+<input id="time" type="time">
+<select id="action"><option>Book Appointment</option><option>Cancel Appointment</option></select>
+<button onclick="save()">Submit</button>
+<h2>Appointment List</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.salon||"[]");
+function save(){
+if(action.value==="Book Appointment")a.push([name.value,phone.value,service.value,stylist.value,date.value,time.value]);
+else a=a.filter(x=>x[0]!==name.value);
+localStorage.salon=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
