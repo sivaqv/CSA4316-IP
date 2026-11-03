@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>AgriMart</title></head>
+<body>
+<h1>AgriMart Agricultural Shopping</h1>
+<select id="product"><option>Seeds</option><option>Fertilizers</option><option>Pesticides</option><option>Farming Tools</option></select>
+<input id="name" placeholder="Product Name">
+<input id="price" type="number" placeholder="Price">
+<input id="qty" type="number" placeholder="Quantity">
+<input id="farmer" placeholder="Farmer Name">
+<input id="address" placeholder="Shipping Address">
+<select id="action"><option>Add Product</option><option>Order Product</option><option>Update Shipping Status</option></select>
+<button onclick="save()">Submit</button>
+<h2>AgriMart Records</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.agri||"[]");
+function save(){
+a.push([action.value,product.value,name.value,price.value,qty.value,farmer.value,address.value]);
+localStorage.agri=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
