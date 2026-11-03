@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head><title>Hotel Booking</title></head>
+<body>
+<h1>Online Hotel Room Booking</h1>
+<select id="room">
+<option>Single Room</option><option>Double Room</option>
+<option>Deluxe Room</option><option>Suite Room</option>
+</select>
+<input id="name" placeholder="Customer Name">
+<input id="checkin" type="date">
+<input id="checkout" type="date">
+<input id="guests" type="number" placeholder="Number of Guests">
+<select id="action">
+<option>Check Availability</option><option>Book Room</option>
+<option>Modify Booking</option><option>Cancel Booking</option>
+</select>
+<button onclick="save()">Submit</button>
+<h2>Booking Details</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.hotel||"[]");
+function save(){
+if(action.value==="Modify Booking"||action.value==="Cancel Booking"){
+if(checkin.value && new Date(checkin.value)-new Date()>259200000){
+a=a.filter(x=>x[1]!==name.value);
+}else{alert("Changes or cancellation must be at least 3 days before arrival");return;}
+}
+if(action.value==="Book Room")a.push([room.value,name.value,checkin.value,checkout.value,guests.value]);
+localStorage.hotel=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
