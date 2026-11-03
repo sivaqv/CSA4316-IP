@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head><title>Train Reservation</title></head>
+<body>
+<h1>Online Train Reservation System</h1>
+<input id="name" placeholder="Passenger Name">
+<input id="from" placeholder="Origin Station">
+<input id="to" placeholder="Destination Station">
+<input id="date" type="date">
+<select id="class"><option>General</option><option>Sleeper</option><option>AC</option></select>
+<select id="action"><option>Book Ticket</option><option>Check PNR</option><option>Cancel Ticket</option></select>
+<input id="pnr" placeholder="Enter PNR Number">
+<button onclick="save()">Submit</button>
+<h2>Ticket Details</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.train||"[]");
+function save(){
+if(action.value==="Book Ticket"){
+let p=Math.floor(100000+Math.random()*900000);
+a.push([name.value,from.value,to.value,date.value,class.value,p,"Confirmed"]);
+out.innerHTML="Ticket Booked. Your PNR is "+p;
+}
+else if(action.value==="Check PNR"){
+let x=a.find(x=>x[5]==pnr.value);
+out.innerHTML=x?x.join(" | "):"PNR Not Found";
+}
+else{
+a=a.filter(x=>x[5]!=pnr.value);out.innerHTML="Ticket Cancelled";
+}
+localStorage.train=JSON.stringify(a);
+}
+</script>
+</body>
+</html>
