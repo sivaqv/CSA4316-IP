@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head><title>Library Management</title></head>
+<body>
+<h1>Library Management System</h1>
+<h2>Librarian Admin / Student</h2>
+<select id="m">
+<option>Login</option><option>Register</option><option>Add Book</option>
+<option>Update Book</option><option>Delete Book</option><option>Issue Book</option>
+<option>Return Book</option><option>Calculate Fine</option>
+<option>Search Book</option><option>Borrow History</option>
+<option>Search Study Material</option><option>My Profile</option>
+</select>
+<input id="name" placeholder="Student Name">
+<input id="book" placeholder="Book Name">
+<input id="date" type="date">
+<button onclick="save()">Submit</button>
+<h2>Library Records</h2><table border="1" id="t"></table>
+<script>
+let data=JSON.parse(localStorage.lib||"[]");
+function save(){
+data.push([m.value,name.value,book.value,date.value]);
+localStorage.lib=JSON.stringify(data); show();
+}
+function show(){
+t.innerHTML="<tr><th>Module</th><th>Student</th><th>Book</th><th>Date</th></tr>";
+data.forEach(x=>t.innerHTML+="<tr>"+x.map(v=>"<td>"+v+"</td>").join("")+"</tr>");
+}
+show();
+</script>
+</body>
+</html>
