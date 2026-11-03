@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>ReNewMarket</title></head>
+<body>
+<h1>ReNewMarket Second-Hand Shopping</h1>
+<input id="product" placeholder="Product Name">
+<select id="category"><option>Mobile</option><option>Furniture</option><option>Vehicle</option><option>Electronics</option></select>
+<select id="condition"><option>Excellent</option><option>Good</option><option>Used</option></select>
+<input id="price" type="number" placeholder="Price">
+<input id="seller" placeholder="Seller Name">
+<input id="contact" placeholder="Contact">
+<select id="action"><option>Post Product</option><option>Search Product</option><option>Contact Seller</option></select>
+<button onclick="save()">Submit</button>
+<h2>Products</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.renew||"[]");
+function save(){
+if(action.value==="Search Product"){
+let r=a.filter(x=>x[0].toLowerCase().includes(product.value.toLowerCase()));
+out.innerHTML=r.map(x=>x.join(" | ")).join("<br>")||"Product not found";
+}else{
+a.push([product.value,category.value,condition.value,price.value,seller.value,contact.value]);
+localStorage.renew=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+}
+</script>
+</body>
+</html>
