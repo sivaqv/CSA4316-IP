@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>StyleHub Fashion</title></head>
+<body>
+<h1>StyleHub Online Fashion Store</h1>
+<select id="category"><option>Men</option><option>Women</option><option>Children</option></select>
+<select id="product"><option>Shirt</option><option>Jeans</option><option>Shoes</option><option>Dress</option></select>
+<select id="size"><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+<input id="color" placeholder="Color">
+<input id="price" type="number" placeholder="Price">
+<input id="customer" placeholder="Customer Name">
+<select id="action"><option>Add to Cart</option><option>Add to Wishlist</option><option>Place Order</option><option>Return Product</option></select>
+<button onclick="save()">Submit</button>
+<h2>Fashion Orders</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.stylehub||"[]");
+function save(){
+a.push([action.value,category.value,product.value,size.value,color.value,price.value,customer.value]);
+localStorage.stylehub=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
