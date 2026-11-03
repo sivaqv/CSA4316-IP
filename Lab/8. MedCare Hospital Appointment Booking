@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Hospital Appointment</title></head>
+<body>
+<h1>MedCare Hospital</h1>
+<input id="patient" placeholder="Patient Name">
+<input id="age" type="number" placeholder="Age">
+<select id="speciality"><option>Cardiology</option><option>Dermatology</option><option>Orthopedics</option><option>General Medicine</option></select>
+<input id="doctor" placeholder="Doctor Name">
+<input id="location" placeholder="Hospital Location">
+<input id="date" type="date">
+<input id="time" type="time">
+<button onclick="save()">Book Appointment</button>
+<h2>Appointment Status</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.medcare||"[]");
+function save(){
+a.push([patient.value,age.value,speciality.value,doctor.value,location.value,date.value,time.value,"Booked"]);
+localStorage.medcare=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
