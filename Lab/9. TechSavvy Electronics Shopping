@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>TechSavvy Store</title></head>
+<body>
+<h1>TechSavvy Electronics Store</h1>
+<select id="product"><option>Mobile</option><option>Laptop</option><option>Tablet</option><option>Headphones</option></select>
+<input id="price" type="number" placeholder="Price">
+<input id="qty" type="number" placeholder="Quantity">
+<input id="customer" placeholder="Customer Name">
+<select id="action"><option>Add to Cart</option><option>Remove Item</option><option>Checkout</option><option>Order Status</option></select>
+<button onclick="save()">Submit</button>
+<h2>Shopping Cart / Orders</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.tech||"[]");
+function save(){
+if(action.value==="Remove Item")a=a.filter(x=>x[0]!==product.value);
+else a.push([product.value,price.value,qty.value,customer.value,action.value]);
+localStorage.tech=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>")+"<br>Total: ₹"+a.reduce((s,x)=>s+(+x[1]||0)*(+x[2]||0),0);
+}
+</script>
+</body>
+</html>
