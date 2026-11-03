@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Insurance Management</title></head>
+<body>
+<h1>InsureEasy Insurance Management</h1>
+<input id="name" placeholder="Customer Name">
+<input id="age" type="number" placeholder="Age">
+<select id="policy"><option>Life Insurance</option><option>Health Insurance</option><option>Vehicle Insurance</option></select>
+<input id="amount" type="number" placeholder="Coverage Amount">
+<select id="action"><option>Register</option><option>Buy Policy</option><option>Submit Claim</option><option>Check Claim Status</option></select>
+<input id="claim" placeholder="Claim Details">
+<button onclick="save()">Submit</button>
+<h2>Insurance Records</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.insure||"[]");
+function save(){
+a.push([action.value,name.value,age.value,policy.value,amount.value,claim.value]);
+localStorage.insure=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
