@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Complaint Management</title></head>
+<body>
+<h1>ComplainEase Complaint Management</h1>
+<input id="name" placeholder="User Name">
+<input id="email" placeholder="Email">
+<select id="category"><option>Electricity</option><option>Water</option><option>Road</option><option>Other</option></select>
+<input id="subject" placeholder="Complaint Subject">
+<textarea id="description" placeholder="Complaint Description"></textarea>
+<select id="status"><option>Pending</option><option>In Progress</option><option>Completed</option></select>
+<button onclick="save()">Submit Complaint</button>
+<h2>Complaint Records</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.complaints||"[]");
+function save(){
+a.push([name.value,email.value,category.value,subject.value,description.value,status.value]);
+localStorage.complaints=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
