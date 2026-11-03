@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>Online Voting</title></head>
+<body>
+<h1>Online Voting System</h1>
+<input id="name" placeholder="Voter Name">
+<input id="voter" placeholder="Voter ID">
+<input id="otp" placeholder="OTP">
+<select id="candidate">
+<option>Candidate A</option><option>Candidate B</option><option>Candidate C</option>
+</select>
+<button onclick="vote()">Submit Vote</button>
+<h2>Voting Result</h2><div id="out"></div>
+<script>
+let votes=JSON.parse(localStorage.votes||"{}");
+let voters=JSON.parse(localStorage.voters||"[]");
+function vote(){
+if(!name.value||!voter.value||!otp.value){alert("Enter all details");return;}
+if(voters.includes(voter.value)){alert("Already voted");return;}
+votes[candidate.value]=(votes[candidate.value]||0)+1;
+voters.push(voter.value);
+localStorage.votes=JSON.stringify(votes);
+localStorage.voters=JSON.stringify(voters);
+out.innerHTML=Object.entries(votes).map(x=>x[0]+": "+x[1]+" votes").join("<br>");
+}
+</script>
+</body>
+</html>
