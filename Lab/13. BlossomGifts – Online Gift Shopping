@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Blossom Gifts</title></head>
+<body>
+<h1>BlossomGifts Online Store</h1>
+<select id="gift"><option>Flower Bouquet</option><option>Chocolate Box</option><option>Teddy Bear</option><option>Gift Hamper</option></select>
+<select id="occasion"><option>Birthday</option><option>Wedding</option><option>Anniversary</option><option>Festival</option></select>
+<input id="price" type="number" placeholder="Price">
+<input id="customer" placeholder="Customer Name">
+<input id="recipient" placeholder="Recipient Name">
+<input id="date" type="date">
+<textarea id="message" placeholder="Gift Message"></textarea>
+<button onclick="save()">Place Order</button>
+<h2>Gift Orders</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.gifts||"[]");
+function save(){
+a.push([gift.value,occasion.value,price.value,customer.value,recipient.value,date.value,message.value]);
+localStorage.gifts=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
