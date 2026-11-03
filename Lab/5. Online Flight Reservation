@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Flight Reservation</title></head>
+<body>
+<h1>Online Flight Reservation</h1>
+<input id="name" placeholder="Passenger Name">
+<input id="from" placeholder="From">
+<input id="to" placeholder="Destination">
+<input id="date" type="date">
+<select id="class"><option>Economy</option><option>Business</option><option>First Class</option></select>
+<select id="action"><option>Search Flight</option><option>Book Ticket</option><option>Cancel Ticket</option><option>View My Ticket</option></select>
+<button onclick="save()">Submit</button>
+<h2>Flight Details</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.flight||"[]");
+function save(){
+if(action.value==="Search Flight")out.innerHTML="Available flight: Chennai to "+to.value;
+if(action.value==="Book Ticket"){
+let id="FL"+Math.floor(Math.random()*99999);
+a.push([id,name.value,from.value,to.value,date.value,class.value]);
+out.innerHTML="Booking Successful. Ticket ID: "+id;
+}
+if(action.value==="Cancel Ticket"){a=[];out.innerHTML="Ticket Cancelled";}
+if(action.value==="View My Ticket")out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+localStorage.flight=JSON.stringify(a);
+}
+</script>
+</body>
+</html>
