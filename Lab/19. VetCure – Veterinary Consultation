@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>VetCure</title></head>
+<body>
+<h1>VetCure Veterinary Consultation</h1>
+<input id="farmer" placeholder="Farmer Name">
+<input id="animal" placeholder="Animal Type">
+<textarea id="symptoms" placeholder="Animal Signs and Symptoms"></textarea>
+<select id="type"><option>Text Complaint</option><option>Image Complaint</option><option>Audio Complaint</option><option>Video Complaint</option></select>
+<input id="doctor" placeholder="Doctor Name">
+<textarea id="solution" placeholder="Doctor Solution"></textarea>
+<select id="action"><option>Post Complaint</option><option>Doctor Solution</option><option>Post Feedback</option></select>
+<button onclick="save()">Submit</button>
+<h2>Consultation Records</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.vet||"[]");
+function save(){
+a.push([action.value,farmer.value,animal.value,symptoms.value,type.value,doctor.value,solution.value]);
+localStorage.vet=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
