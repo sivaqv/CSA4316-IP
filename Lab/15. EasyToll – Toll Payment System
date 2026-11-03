@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>EasyToll</title></head>
+<body>
+<h1>EasyToll Payment System</h1>
+<input id="vehicle" placeholder="Vehicle Number">
+<select id="type"><option>Car</option><option>Bus</option><option>Truck</option><option>Bike</option></select>
+<input id="entry" placeholder="Entry Toll Plaza">
+<input id="exit" placeholder="Exit Toll Plaza">
+<select id="payment"><option>UPI</option><option>Card</option><option>Net Banking</option></select>
+<button onclick="pay()">Calculate Toll & Pay</button>
+<h2>Payment Receipt</h2><div id="out"></div>
+<script>
+function pay(){
+let rates={Car:100,Bus:200,Truck:250,Bike:50};
+let amount=rates[type.value];
+out.innerHTML="Vehicle: "+vehicle.value+"<br>Type: "+type.value+
+"<br>Entry: "+entry.value+"<br>Exit: "+exit.value+
+"<br>Payment: "+payment.value+"<br>Toll Amount: Rs."+amount+
+"<br>Payment Successful (Demo)";
+}
+</script>
+</body>
+</html>
