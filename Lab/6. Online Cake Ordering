@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Cake Ordering</title></head>
+<body>
+<h1>Online Cake Ordering System</h1>
+<select id="cake"><option>Chocolate Cake</option><option>Vanilla Cake</option><option>Black Forest</option><option>Red Velvet</option></select>
+<input id="price" type="number" placeholder="Price">
+<input id="size" placeholder="Cake Size">
+<input id="name" placeholder="Customer Name">
+<input id="address" placeholder="Shipping Address">
+<select id="action"><option>Add to Cart</option><option>Place Order</option><option>Update Shipping Address</option></select>
+<button onclick="save()">Submit</button>
+<h2>Order Details</h2><div id="out"></div>
+<script>
+let a=JSON.parse(localStorage.cake||"[]");
+function save(){
+a.push([action.value,cake.value,price.value,size.value,name.value,address.value]);
+localStorage.cake=JSON.stringify(a);
+out.innerHTML=a.map(x=>x.join(" | ")).join("<br>");
+}
+</script>
+</body>
+</html>
